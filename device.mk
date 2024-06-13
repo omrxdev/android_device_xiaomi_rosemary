@@ -63,6 +63,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libtinycompress \
     libaudiofoundation.vendor \
+    libunwindstack.vendor \
     tinymix
 
 PRODUCT_PACKAGES += \
@@ -103,7 +104,10 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.6.vendor \
 
 PRODUCT_PACKAGES += \
-    libdng_sdk.vendor
+    libcamera_metadata.vendor \
+    libdng_sdk.vendor \
+    libexif.vendor \
+    libpng.vendor
 
 # Cgroup
 PRODUCT_COPY_FILES += \
@@ -145,7 +149,8 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     libdrm \
-    libdrm.vendor
+    libdrm.vendor \
+    libutilscallstack.vendor
 
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -184,6 +189,10 @@ PRODUCT_PACKAGES += \
     android.hardware.gnss.measurement_corrections@1.1.vendor \
     android.hardware.gnss.visibility_control@1.0.vendor \
     android.hardware.gnss-V1-ndk_platform.vendor
+
+PRODUCT_PACKAGES += \
+    libcurl.vendor \
+    libexpat.vendor
 
 # Health
 PRODUCT_PACKAGES += \
