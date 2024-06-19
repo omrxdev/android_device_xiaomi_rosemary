@@ -134,7 +134,7 @@
       "Name": "UclampFGMin",
       "Path": "/dev/cpuctl/foreground/cpu.uclamp.min",
       "Values": [
-        "10",
+        "0",
         "15",
         "30",
         "100"
