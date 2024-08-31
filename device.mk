@@ -110,6 +110,7 @@ PRODUCT_PACKAGES += \
     libcamera_metadata.vendor \
     libdng_sdk.vendor \
     libexif.vendor \
+    libmemunreachable.vendor \
     libpng.vendor
 
 # Cgroup
