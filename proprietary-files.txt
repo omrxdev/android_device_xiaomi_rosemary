@@ -1911,14 +1911,14 @@ vendor/lib64/vendor.mediatek.hardware.mmagent@1.1.so
 vendor/lib64/vendor.mediatek.hardware.videotelephony@1.0.so
 
 # IMS - from plato-user 14 UP1A.230620.001 V14.0.7.0.ULQMIXM release-keys
-system_ext/framework/mediatek-common.jar:framework/mediatek-common.jar|895c6819d00deb385675cc7b90f073d0b6fbd29d
-system_ext/framework/mediatek-framework.jar:framework/mediatek-framework.jar|a9789fd904f4b0643a3257e798318faabf342477
-system_ext/framework/mediatek-ims-base.jar:framework/mediatek-ims-base.jar|a6f7ae937de5b9c25e41af8c15db2717a31a6e97
-system_ext/framework/mediatek-ims-common.jar:framework/mediatek-ims-common.jar|8fc8f9dbbe56a309fa620222430cc854143672fb
-system_ext/framework/mediatek-ims-extension-plugin.jar:framework/mediatek-ims-extension-plugin.jar|4562720d65136b189d661f248fd3170a749cada3
-system_ext/framework/mediatek-telecom-common.jar:framework/mediatek-telecom-common.jar|686eaf0a472f44194116a0861944483cd9b09a38
-system_ext/framework/mediatek-telephony-base.jar:framework/mediatek-telephony-base.jar|f66b872e413d16fc29d22ead4e94984f84be94e9
-system_ext/framework/mediatek-telephony-common.jar:framework/mediatek-telephony-common.jar|869c6918a945ecb87d8b30ec5ca4056d6b863099
+system_ext/framework/mediatek-common.jar:system/framework/mediatek-common.jar|895c6819d00deb385675cc7b90f073d0b6fbd29d
+system_ext/framework/mediatek-framework.jar:system/framework/mediatek-framework.jar|a9789fd904f4b0643a3257e798318faabf342477
+system_ext/framework/mediatek-ims-base.jar:system/framework/mediatek-ims-base.jar|a6f7ae937de5b9c25e41af8c15db2717a31a6e97
+system_ext/framework/mediatek-ims-common.jar:system/framework/mediatek-ims-common.jar|8fc8f9dbbe56a309fa620222430cc854143672fb
+system_ext/framework/mediatek-ims-extension-plugin.jar:system/framework/mediatek-ims-extension-plugin.jar|4562720d65136b189d661f248fd3170a749cada3
+system_ext/framework/mediatek-telecom-common.jar:system/framework/mediatek-telecom-common.jar|686eaf0a472f44194116a0861944483cd9b09a38
+system_ext/framework/mediatek-telephony-base.jar:system/framework/mediatek-telephony-base.jar|f66b872e413d16fc29d22ead4e94984f84be94e9
+system_ext/framework/mediatek-telephony-common.jar:system/framework/mediatek-telephony-common.jar|869c6918a945ecb87d8b30ec5ca4056d6b863099
 system_ext/bin/vtservice|59adc81ee1ad1f3fb4942cd6e8e7100325002eb2
 system_ext/etc/init/init.vtservice.rc|50a2249906edc06059b443513db47a2ddc0490dc
 system_ext/lib64/libcomutils.so|6d9cd979f33ef01cb26861a38a59e76e1c2a3acb
@@ -1938,7 +1938,7 @@ system_ext/lib64/vendor.mediatek.hardware.videotelephony-V1-ndk.so|b4733a99049d5
 system_ext/lib64/vendor.mediatek.hardware.videotelephony@1.0.so|1385634094de90c59b9f689d313b6b3ee8770efe
 
 # IMS (App) - from plato-user 14 UP1A.230620.001 V14.0.7.0.ULQMIXM release-keys (patched)
-system_ext/priv-app/ImsService/ImsService.apk:priv-app/ImsService/ImsService.apk|62e6a0c457812366623630dffef27b0bf5ca7fad
+system_ext/priv-app/ImsService/ImsService.apk:system/priv-app/ImsService/ImsService.apk|62e6a0c457812366623630dffef27b0bf5ca7fad
 
 # IR
 vendor/bin/consumerird
