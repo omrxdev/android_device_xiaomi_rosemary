@@ -60,6 +60,10 @@ blob_fixups: blob_fixups_user_type = {
         .binary_regex_replace(b'\xFF\xC3\x01\xD1\xFD\x7B\x06\xA9', b'\x00\x00\x80\xD2\xC0\x03\x5F\xD6'),
     'vendor/lib64/hw/fingerprint.fpc.default.so': blob_fixup()
         .binary_regex_replace(b'\xFF\x43\x01\xD1\xFD\x7B\x02\xA9', b'\xC0\x03\x5F\xD6\xFD\x7B\x02\xA9'),
+    ('vendor/lib64/libteei_daemon_vfs.so', 'vendor/lib64/lib3a.flash.so', 'vendor/lib64/libSQLiteModule_VER_ALL.so'): blob_fixup()
+         .add_needed('liblog.so'),
+     'vendor/lib64/libmnl.so' : blob_fixup()
+         .add_needed('libcutils.so')
 }  # fmt: skip
 
 module = ExtractUtilsModule(
