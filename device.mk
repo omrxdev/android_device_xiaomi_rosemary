@@ -332,7 +332,6 @@ PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
     $(LOCAL_PATH)/overlay-lineage
 
 PRODUCT_PACKAGES += \
-    CarrierConfigOverlayRosemary \
     FrameworksResOverlayRosemary \
     SettingsProviderOverlayRosemary \
     SystemUIOverlayRosemary \
