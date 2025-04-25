@@ -64,7 +64,7 @@ vendor/lib/libblisrc32_vendor.so
 vendor/lib/libcvsd_mtk.so
 vendor/lib/libfvaudio.so
 vendor/lib/librt_extamp_intf.so
-vendor/lib/libspeech_enh_lib.so
+vendor/lib/libspeech_enh_lib.so;FIX_SONAME
 vendor/lib/libspeechparser_vendor.so
 vendor/lib/libverno.so
 vendor/lib/libvow_ap_test_aa.so
@@ -101,9 +101,9 @@ vendor/lib64/libblisrc32_vendor.so
 vendor/lib64/libcvsd_mtk.so
 vendor/lib64/libfvaudio.so
 vendor/lib64/libmiStereoFactoryRemapLib.so
-vendor/lib64/libnotifyaudiohal.so
+vendor/lib64/libnotifyaudiohal.so;FIX_SONAME
 vendor/lib64/librt_extamp_intf.so
-vendor/lib64/libspeech_enh_lib.so
+vendor/lib64/libspeech_enh_lib.so;FIX_SONAME
 vendor/lib64/libspeechparser_vendor.so
 vendor/lib64/vendor.mediatek.hardware.atci@1.0.so
 vendor/lib64/vendor.mediatek.hardware.audio@6.1.so
@@ -1637,7 +1637,7 @@ vendor/lib64/vendor.mediatek.hardware.engineermode@1.3.so
 
 # Fingerprint
 vendor/lib64/hw/fingerprint.fpc.default.so
-vendor/lib64/hw/fingerprint.goodix.default.so
+vendor/lib64/hw/fingerprint.goodix.default.so;FIX_SONAME
 vendor/lib64/com.fingerprints.extension@1.0.so
 vendor/lib64/libgf_ca.so
 vendor/lib64/libgf_hal.so
@@ -1942,8 +1942,8 @@ system_ext/priv-app/ImsService/ImsService.apk:system/priv-app/ImsService/ImsServ
 
 # IR
 vendor/bin/consumerird
-vendor/lib/hw/consumerir.default.so:vendor/lib/hw/consumerir.mt6785.so
-vendor/lib64/hw/consumerir.default.so:vendor/lib64/hw/consumerir.mt6785.so
+vendor/lib/hw/consumerir.default.so:vendor/lib/hw/consumerir.mt6785.so;FIX_SONAME
+vendor/lib64/hw/consumerir.default.so:vendor/lib64/hw/consumerir.mt6785.so;FIX_SONAME
 
 # Keymaster
 vendor/bin/hw/android.hardware.keymaster@4.1-service.beanpod
@@ -2130,7 +2130,7 @@ vendor/lib/libcmdl_ndk.mtk.vndk.so
 vendor/lib/libneuroeara.so
 vendor/lib/libneuron_graph_delegate.mtk.so
 vendor/lib/libneuropilot_hal_utils.so
-vendor/lib/libnir_neon_driver_ndk.mtk.vndk.so
+vendor/lib/libnir_neon_driver_ndk.mtk.vndk.so;FIX_SONAME
 vendor/lib/libtflite_mtk.so
 vendor/lib64/mt6785/libneuron_runtime.5.so
 vendor/lib64/mt6785/libneuron_runtime.so
@@ -2145,7 +2145,7 @@ vendor/lib64/libneuron_adapter.so
 vendor/lib64/libneuron_graph_delegate.mtk.so
 vendor/lib64/libneuron_platform.so
 vendor/lib64/libneuropilot_hal_utils.so
-vendor/lib64/libnir_neon_driver_ndk.mtk.vndk.so
+vendor/lib64/libnir_neon_driver_ndk.mtk.vndk.so;FIX_SONAME
 vendor/lib64/libnxp_extamp_intf.so
 vendor/lib64/libtflite_mtk.so
 
@@ -2510,12 +2510,12 @@ vendor/etc/init/android.hardware.secure_element@1.2-service-mediatek.rc
 vendor/bin/sensors_test
 vendor/etc/cit_config.xml
 vendor/etc/elliptic_sensor.xml
-vendor/lib/libakm.so
+vendor/lib/libakm.so;FIX_SONAME
 vendor/lib/libhwm.so
 vendor/lib/librgbwlightsensor.so
-vendor/lib64/hw/sensors.elliptic.so
+vendor/lib64/hw/sensors.elliptic.so;FIX_SONAME
 vendor/lib64/hw/sensors.mt6785.so
-vendor/lib64/libakm.so
+vendor/lib64/libakm.so;FIX_SONAME
 vendor/lib64/libhwm.so
 vendor/lib64/libksensor.so
 vendor/lib64/librgbwlightsensor.so
@@ -2624,7 +2624,7 @@ vendor/etc/init/wlan_assistant.rc
 vendor/lib/libapmonitor_vendor.so
 vendor/lib/meta_wifi_data.so
 vendor/lib/vendor.mediatek.hardware.apmonitor@2.0.so
-vendor/lib64/libwifi-hal.so:vendor/lib64/libwifi-hal-mtk.so
+vendor/lib64/libwifi-hal.so:vendor/lib64/libwifi-hal-mtk.so;FIX_SONAME
 vendor/lib64/libapmonitor_vendor.so
 vendor/lib64/libconnfem.so
 vendor/lib64/libwifitest.so
