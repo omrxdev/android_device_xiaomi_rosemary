@@ -219,6 +219,9 @@ PRODUCT_PACKAGES += \
     WifiOverlayRosemary
 
 # Power
+TARGET_TAP_TO_WAKE_NODE := /sys/touchpanel/double_tap
+$(call soong_config_set,mediatek_power,double_tap_to_wake_node,$(TARGET_TAP_TO_WAKE_NODE))
+
 PRODUCT_PACKAGES += \
     android.hardware.power-service-mediatek
 
