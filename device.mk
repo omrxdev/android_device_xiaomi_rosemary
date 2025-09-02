@@ -296,7 +296,6 @@ PRODUCT_PACKAGES += \
     init.project.rc \
     init.sensor_1_0.rc \
     init.stnfc.rc \
-    init.target.rc \
     ueventd.mtk.rc
 
 PRODUCT_PACKAGES += \
