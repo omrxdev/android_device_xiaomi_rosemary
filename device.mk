@@ -138,8 +138,6 @@ PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl.recovery \
     android.hardware.health@2.1-service
 
-$(call soong_config_set,lineage_health,charging_control_supports_bypass,false)
-
 # Hotword Enrollment
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/hiddenapi-package-allowlist-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/hotword-hiddenapi-package-allowlist.xml \
@@ -170,6 +168,11 @@ PRODUCT_PACKAGES += \
 # Lineage Health
 PRODUCT_PACKAGES += \
     vendor.lineage.health-service.default
+
+$(call soong_config_set,lineage_health,charging_control_charging_disabled,1)
+$(call soong_config_set,lineage_health,charging_control_charging_enabled,0)
+$(call soong_config_set,lineage_health,charging_control_charging_path,/sys/class/power_supply/battery/input_suspend)
+$(call soong_config_set,lineage_health,charging_control_supports_bypass,false)
 
 # Media
 PRODUCT_COPY_FILES += \

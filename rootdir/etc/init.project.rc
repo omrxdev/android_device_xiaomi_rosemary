@@ -67,8 +67,8 @@ on post-fs-data
     chown system system /dev/spm
 
 #charge permission control
-    chmod 0777 /sys/class/power_supply/battery/charging_enabled
-    chown system system /sys/class/power_supply/battery/charging_enabled
+    chmod 0777 /sys/class/power_supply/battery/input_suspend
+    chown system system /sys/class/power_supply/battery/input_suspend
 
 on init
     # Refer to http://source.android.com/devices/tech/storage/index.html
