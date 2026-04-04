@@ -5,7 +5,6 @@
 #
 
 DEVICE_PATH := device/xiaomi/rosemary
-ALLOW_MISSING_DEPENDENCIES=true
 
 # 64-Bit Support
 TARGET_SUPPORTS_64_BIT_APPS := true
