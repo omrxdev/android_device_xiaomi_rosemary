@@ -6,6 +6,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 # A/B updater
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
+# Device-Specifc
+$(call inherit-product, $(LOCAL_PATH)/device.mk)
+
 PRODUCT_NAME := twrp_rosemary
 PRODUCT_DEVICE := rosemary
 PRODUCT_BRAND := Xiaomi
