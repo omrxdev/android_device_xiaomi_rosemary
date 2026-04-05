@@ -31,3 +31,5 @@ export OF_FORCE_PREBUILT_KERNEL=1
 # Xiaomi-specific
 export FOX_TARGET_DEVICES="rosemary,secret,maltose,rosemary_p"
 export OF_NO_REFLASH_CURRENT_ORANGEFOX=1
+
+export OF_MANUAL_ROOT_VENDOR_ERROR_FIX=1
