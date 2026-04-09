@@ -9,6 +9,12 @@ DEVICE_PATH := device/xiaomi/rosemary
 # 64-Bit Support
 TARGET_SUPPORTS_64_BIT_APPS := true
 
+# Needed to mount vendor/logical partitions before decryption
+BOARD_ROOT_EXTRA_FOLDERS := bluetooth dsp firmware persist
+TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
+    /vendor/lib64/libkeymaster4.so \
+    /vendor/lib64/libkeymaster41.so
+
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-2a-dotprod
@@ -56,6 +62,8 @@ BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
 BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
 
 BOARD_KERNEL_IMAGE_NAME := Image.gz
+BOARD_KERNEL_SEPARATED_DTBO := true
+TARGET_NO_KERNEL := false
 
 # Use prebuilt kernel (strongly recommended for recovery trees)
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image.gz
@@ -115,7 +123,7 @@ TW_INCLUDE_NTFS_3G := true
 TW_INCLUDE_RESETPROP := true
 TW_INCLUDE_REPACKTOOLS := true
 TW_INCLUDE_FASTBOOTD := true
-TW_HAS_MTK_HARDWARE := true
+TW_NO_LEGACY_PROPS := true
 TW_NO_SCREEN_BLANK := true
 TW_SCREEN_BLANK_ON_BOOT := false
 TW_Y_OFFSET := 89
@@ -143,4 +151,5 @@ VENDOR_SECURITY_PATCH := 2127-12-31
 BOOT_SECURITY_PATCH := 2127-12-31
 
 TW_FRAMERATE := 60
-TW_NO_SCREEN_BLANK := true
+TW_PREPARE_DATA_MEDIA_EARLY := true
+BOARD_SUPPRESS_SECURE_ERASE := true
