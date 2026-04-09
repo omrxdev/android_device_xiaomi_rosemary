@@ -9,12 +9,6 @@ DEVICE_PATH := device/xiaomi/rosemary
 # 64-Bit Support
 TARGET_SUPPORTS_64_BIT_APPS := true
 
-# Needed to mount vendor/logical partitions before decryption
-BOARD_ROOT_EXTRA_FOLDERS := bluetooth dsp firmware persist
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    /vendor/lib64/libkeymaster4.so \
-    /vendor/lib64/libkeymaster41.so
-
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-2a-dotprod
