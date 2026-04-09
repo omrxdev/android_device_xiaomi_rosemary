@@ -4,16 +4,22 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+# OrangeFox specific flags
+FOX_AB_DEVICE := 1
+FOX_VIRTUAL_AB_DEVICE := 1
+OF_DEFAULT_KEYMASTER_VERSION := 4.1
+TW_FORCE_KEYMASTER_VER := true
+FOX_VANILLA_BUILD := 1
+OF_NO_TREBLE_COMPATIBILITY_CHECK := 1
+OF_IGNORE_LOGICAL_MOUNT_ERRORS := 1
+OF_FBE_METADATA_MOUNT_IGNORE := 1
+OF_SKIP_DECRYPTED_ADOPTED_STORAGE := 1
+OF_FORCE_PREBUILT_KERNEL := 1
+
 DEVICE_PATH := device/xiaomi/rosemary
 
 # 64-Bit Support
 TARGET_SUPPORTS_64_BIT_APPS := true
-
-# Needed to mount vendor/logical partitions before decryption
-BOARD_ROOT_EXTRA_FOLDERS := bluetooth dsp firmware persist
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    /vendor/lib64/libkeymaster4.so \
-    /vendor/lib64/libkeymaster41.so
 
 # Architecture
 TARGET_ARCH := arm64
