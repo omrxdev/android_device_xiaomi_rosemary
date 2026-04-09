@@ -2,17 +2,17 @@
 #<src>                                          <mnt_point>             <type>    <mnt_flags>                                          <fs_mgr_flags>
 
 # Dynamic/Logical partitions
-system                                          /system                 ext4      ro                                                   wait,slotselect,logical
-system_ext                                      /system_ext             ext4      ro                                                   wait,slotselect,logical
-vendor                                          /vendor                 ext4      ro                                                   wait,slotselect,logical
-product                                         /product                ext4      ro                                                   wait,slotselect,logical
+system                                          /system                 ext4      ro                                                   wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
+system_ext                                      /system_ext             ext4      ro                                                   wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
+vendor                                          /vendor                 ext4      ro                                                   wait,slotselect,avb,logical,first_stage_mount
+product                                         /product                ext4      ro                                                   wait,slotselect,avb,logical,first_stage_mount
 
 # Boot partitions
 /dev/block/by-name/boot                         /boot                   emmc      defaults                                             slotselect
 /dev/block/by-name/dtbo                         /dtbo                   emmc      defaults                                             defaults
 
 # Metadata (required for FBE)
-/dev/block/by-name/md_udc                       /metadata               ext4      noatime,nosuid,nodev,discard                         wait,check,formattable
+/dev/block/by-name/md_udc                       /metadata               ext4      noatime,nosuid,nodev,discard,data=journal,commit=1   wait,check,formattable,first_stage_mount
 
 # Userdata
 /dev/block/by-name/userdata                     /data                   f2fs      noatime,nosuid,nodev,discard,flush_merge,reserve_root=134217,resgid=1065,alloc_mode=reuse,fsync_mode=nobarrier,inlinecrypt      wait,check,formattable,quota,latemount,reservedsize=128m,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption,fsverity

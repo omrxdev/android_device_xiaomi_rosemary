@@ -1,8 +1,16 @@
 on init
     setprop sys.usb.ffs.aio_compat 1
     setprop sys.usb.configfs 1
+    mount ext4 /dev/block/by-name/vendor /vendor ro barrier=1
+    start vendor.keymaster-4-1
 
 service init-recovery-mt6785-sh /init.recovery.mt6785.sh
     user root
     group root
+    seclabel u:r:recovery:s0
+
+service vendor.keymaster-4-1 /vendor/bin/hw/android.hardware.keymaster@4.1-service.beanpod
+    user root
+    group root
+    disabled
     seclabel u:r:recovery:s0
