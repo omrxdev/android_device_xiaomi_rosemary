@@ -55,4 +55,5 @@ export OF_HIDE_NOTCH=1
 # Ccache
 export USE_CCACHE=1
 export CCACHE_EXEC=/usr/bin/ccache
+export CCACHE_DIR=/tmp/ccache
 ccache -M 10G
