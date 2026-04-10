@@ -16,25 +16,34 @@ OF_FBE_METADATA_MOUNT_IGNORE := 1
 OF_SKIP_DECRYPTED_ADOPTED_STORAGE := 1
 OF_FORCE_PREBUILT_KERNEL := 1
 
-DEVICE_PATH := device/xiaomi/rosemary
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/prebuilt/lib64/libkeymaster4.so:recovery/root/system/lib64/libkeymaster4.so \
+    $(DEVICE_PATH)/prebuilt/lib64/libkeymaster41.so:recovery/root/system/lib64/libkeymaster41.so \
+    $(DEVICE_PATH)/prebuilt/lib64/libkeymaster_portable.so:recovery/root/system/lib64/libkeymaster_portable.so \
+    $(DEVICE_PATH)/prebuilt/lib64/libpuresoftkeymasterdevice.so:recovery/root/system/lib64/libpuresoftkeymasterdevice.so \
+    $(DEVICE_PATH)/prebuilt/lib64/libkeymaster4support.so:recovery/root/system/lib64/libkeymaster4support.so \
+    $(DEVICE_PATH)/prebuilt/lib64/libkeymaster4_1support.so:recovery/root/system/lib64/libkeymaster4_1support.so \
+    $(DEVICE_PATH)/prebuilt/lib64/libkeymaster_messages.so:recovery/root/system/lib64/libkeymaster_messages.so \
+    $(DEVICE_PATH)/prebuilt/lib64/libgatekeeper.so:recovery/root/system/lib64/libgatekeeper.so
 
-# 64-Bit Support
-TARGET_SUPPORTS_64_BIT_APPS := true
+# Allow putting ELF in PRODUCT_COPY_FILES (required by vibrator)
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+
+DEVICE_PATH := device/redmi/rosemary
+PREBUILT_PATH := $(DEVICE_PATH)/prebuilt
 
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-2a-dotprod
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := generic
-TARGET_CPU_VARIANT_RUNTIME := cortex-a76
+TARGET_CPU_VARIANT := cortex-a55
 
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv8-2a
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := generic
-TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a55
+TARGET_2ND_CPU_VARIANT := cortex-a55
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := rosemary
@@ -45,7 +54,15 @@ BOARD_VENDOR := xiaomi
 TARGET_BOARD_PLATFORM := mt6785
 BOARD_HAS_MTK_HARDWARE := true
 
-# Boot Image
+# Assert
+TARGET_OTA_ASSERT_DEVICE := rosemary,secret,maltose
+
+# Kernel
+BOARD_KERNEL_CMDLINE := \
+	bootopt=64S3,32N2,64N2 \
+	androidboot.force_normal_boot=1
+
+# Boot
 BOARD_KERNEL_BASE := 0x40078000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_OFFSET := 0x00008000
@@ -53,6 +70,13 @@ BOARD_RAMDISK_OFFSET := 0x07c08000
 BOARD_SECOND_OFFSET := 0xbff88000
 BOARD_KERNEL_TAGS_OFFSET := 0x0bc08000
 BOARD_DTB_OFFSET := 0x0bc08000
+BOARD_KERNEL_TAGS_OFFSET := 0x0bc08000
+BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
+
+TARGET_PREBUILT_KERNEL := $(PREBUILT_PATH)/Image.gz
+TARGET_PREBUILT_DTB := $(PREBUILT_PATH)/dtb.img
+
+BOARD_KERNEL_IMAGE_NAME := Image.gz
 BOARD_BOOT_HEADER_VERSION := 2
 
 BOARD_MKBOOTIMG_ARGS := --base $(BOARD_KERNEL_BASE)
@@ -78,15 +102,18 @@ BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
 
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 
+# Additional binaries & libraries needed for recovery
 TARGET_RECOVERY_DEVICE_MODULES += \
     libkeymaster4 \
     libkeymaster41 \
     libpuresoftkeymasterdevice
 
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster41.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
+# AVB
+BOARD_AVB_ENABLE := true
+BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
+
+# System as root
+BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
 
 # A/B OTA partitions
 AB_OTA_PARTITIONS += \
@@ -101,7 +128,8 @@ AB_OTA_PARTITIONS += \
     vbmeta_vendor
 AB_OTA_UPDATER := true
 BOARD_USES_RECOVERY_AS_BOOT := true
-BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
+TARGET_NO_RECOVERY := true
+BOARD_USES_METADATA_PARTITION := true
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
@@ -111,14 +139,27 @@ BOARD_USES_METADATA_PARTITION := true
 # Dynamic Partitions
 BOARD_SUPER_PARTITION_SIZE := 9126805504
 BOARD_SUPER_PARTITION_GROUPS := main
+BOARD_MAIN_PARTITION_LIST := system vendor product
 BOARD_MAIN_SIZE := 9122611200
 BOARD_MAIN_PARTITION_LIST := system system_ext product vendor
 
 # File systems
-TARGET_USERIMAGES_USE_EXT4 := true
+BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
+
+BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_USERIMAGES_USE_F2FS := true
 
+# AB
+AB_OTA_UPDATER := true
+
+# Workaround for copying error vendor files to recovery ramdisk
+TARGET_COPY_OUT_PRODUCT := product
+TARGET_COPY_OUT_VENDOR := vendor
+
 # Recovery
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USES_MKE2FS := true
@@ -129,11 +170,22 @@ TW_INCLUDE_CRYPTO_FBE := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
 TW_USE_FSCRYPT_POLICY := 2
 
-# TWRP Configuration
+# Hack: prevent anti rollback
+PLATFORM_SECURITY_PATCH := 2099-12-31
+VENDOR_SECURITY_PATCH := 2099-12-31
+PLATFORM_VERSION := 99.87.36
+PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
+
+## TWRP-Specific configuration
+
 TW_THEME := portrait_hdpi
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 2047
 TW_DEFAULT_BRIGHTNESS := 900
+TW_FRAMERATE := 60
+TW_SCREEN_BLANK_ON_BOOT := true
+TW_SUPPORT_INPUT_AIDL_HAPTICS := true
+TW_DEVICE_VERSION := rc1
 TW_EXTRA_LANGUAGES := true
 TW_INCLUDE_NTFS_3G := true
 TW_INCLUDE_RESETPROP := true
@@ -148,6 +200,7 @@ TW_H_OFFSET := -89
 # Debug
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
+TARGET_USES_MKE2FS := true
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
@@ -159,13 +212,22 @@ BOARD_AVB_BOOT_ALGORITHM := SHA256_RSA2048
 BOARD_AVB_BOOT_ROLLBACK_INDEX := 1
 BOARD_AVB_BOOT_ROLLBACK_INDEX_LOCATION := 1
 
-# Security patch spoofing - required for FBE decryption
-PLATFORM_VERSION := 99.87.36
-PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
-PLATFORM_SECURITY_PATCH := 2127-12-31
-VENDOR_SECURITY_PATCH := 2127-12-31
-BOOT_SECURITY_PATCH := 2127-12-31
+TW_EXCLUDE_DEFAULT_USB_INIT := true
+RECOVERY_SDCARD_ON_DATA := true
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
 
-TW_FRAMERATE := 60
-TW_PREPARE_DATA_MEDIA_EARLY := true
-BOARD_SUPPRESS_SECURE_ERASE := true
+ifneq ($(OF_HIDE_NOTCH),1)
+    # Configure Status bar icons for regular TWRP builds only
+    TW_CUSTOM_CLOCK_POS := 40
+    TW_CUSTOM_CPU_POS := 605
+    TW_STATUS_ICONS_ALIGN := center
+endif
+
+# Decryption
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
+TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster41.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
+
