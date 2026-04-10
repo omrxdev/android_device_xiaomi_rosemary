@@ -3,5 +3,5 @@ allow system_app sysfs_zram:dir search;
 allow system_app sysfs_zram:file r_file_perms;
 
 # FM Radio
-get_prop(system_app, vendor_mtk_wmt_prop)
-get_prop(system_app, vendor_mtk_default_prop)
+allow system_app vendor_mtk_wmt_prop:file { read open getattr };
+allow system_app vendor_mtk_default_prop:file { read open getattr };

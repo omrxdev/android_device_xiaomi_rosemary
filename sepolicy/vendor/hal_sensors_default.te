@@ -11,7 +11,7 @@ allow hal_sensors_default hal_audio_hwservice:hwservice_manager find;
 allow hal_sensors_default sensor_device:chr_file rw_file_perms;
 
 # Allow access for dynamic sensor properties.
-get_prop(hal_sensors_default, vendor_dynamic_sensor_prop)
+allow hal_sensors_default vendor_dynamic_sensor_prop:file { read open getattr };
 
 # Allow access to raw HID devices for dynamic sensors.
 allow hal_sensors_default device:dir r_dir_perms;

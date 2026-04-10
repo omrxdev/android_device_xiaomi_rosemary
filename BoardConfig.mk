@@ -16,20 +16,10 @@ OF_FBE_METADATA_MOUNT_IGNORE := 1
 OF_SKIP_DECRYPTED_ADOPTED_STORAGE := 1
 OF_FORCE_PREBUILT_KERNEL := 1
 
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/prebuilt/lib64/libkeymaster4.so:recovery/root/system/lib64/libkeymaster4.so \
-    $(DEVICE_PATH)/prebuilt/lib64/libkeymaster41.so:recovery/root/system/lib64/libkeymaster41.so \
-    $(DEVICE_PATH)/prebuilt/lib64/libkeymaster_portable.so:recovery/root/system/lib64/libkeymaster_portable.so \
-    $(DEVICE_PATH)/prebuilt/lib64/libpuresoftkeymasterdevice.so:recovery/root/system/lib64/libpuresoftkeymasterdevice.so \
-    $(DEVICE_PATH)/prebuilt/lib64/libkeymaster4support.so:recovery/root/system/lib64/libkeymaster4support.so \
-    $(DEVICE_PATH)/prebuilt/lib64/libkeymaster4_1support.so:recovery/root/system/lib64/libkeymaster4_1support.so \
-    $(DEVICE_PATH)/prebuilt/lib64/libkeymaster_messages.so:recovery/root/system/lib64/libkeymaster_messages.so \
-    $(DEVICE_PATH)/prebuilt/lib64/libgatekeeper.so:recovery/root/system/lib64/libgatekeeper.so
-
 # Allow putting ELF in PRODUCT_COPY_FILES (required by vibrator)
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 
-DEVICE_PATH := device/redmi/rosemary
+DEVICE_PATH := device/xiaomi/rosemary
 PREBUILT_PATH := $(DEVICE_PATH)/prebuilt
 
 # Architecture
@@ -70,13 +60,8 @@ BOARD_RAMDISK_OFFSET := 0x07c08000
 BOARD_SECOND_OFFSET := 0xbff88000
 BOARD_KERNEL_TAGS_OFFSET := 0x0bc08000
 BOARD_DTB_OFFSET := 0x0bc08000
-BOARD_KERNEL_TAGS_OFFSET := 0x0bc08000
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 
-TARGET_PREBUILT_KERNEL := $(PREBUILT_PATH)/Image.gz
-TARGET_PREBUILT_DTB := $(PREBUILT_PATH)/dtb.img
-
-BOARD_KERNEL_IMAGE_NAME := Image.gz
 BOARD_BOOT_HEADER_VERSION := 2
 
 BOARD_MKBOOTIMG_ARGS := --base $(BOARD_KERNEL_BASE)
@@ -88,17 +73,16 @@ BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --dtb_offset $(BOARD_DTB_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 
-BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
 BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
 
 BOARD_KERNEL_IMAGE_NAME := Image.gz
 BOARD_KERNEL_SEPARATED_DTBO := true
 TARGET_NO_KERNEL := false
 
-# Use prebuilt kernel (strongly recommended for recovery trees)
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image.gz
-TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
+# Use prebuilt kernel and dtb
+TARGET_PREBUILT_KERNEL := $(PREBUILT_PATH)/Image.gz
+TARGET_PREBUILT_DTB := $(PREBUILT_PATH)/dtb.img
+BOARD_PREBUILT_DTBOIMAGE := $(PREBUILT_PATH)/dtbo.img
 
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 
@@ -143,6 +127,8 @@ BOARD_MAIN_PARTITION_LIST := system vendor product
 BOARD_MAIN_SIZE := 9122611200
 BOARD_MAIN_PARTITION_LIST := system system_ext product vendor
 
+# SePolicy
+
 # File systems
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 
@@ -159,9 +145,8 @@ TARGET_COPY_OUT_PRODUCT := product
 TARGET_COPY_OUT_VENDOR := vendor
 
 # Recovery
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 TARGET_USES_MKE2FS := true
 
 # Crypto / Decryption
@@ -183,16 +168,16 @@ TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 2047
 TW_DEFAULT_BRIGHTNESS := 900
 TW_FRAMERATE := 60
-TW_SCREEN_BLANK_ON_BOOT := true
-TW_SUPPORT_INPUT_AIDL_HAPTICS := true
+OF_SCREEN_H := 2400
+OF_PHONE_SCREEN_V := 1080
+TW_SUPPORT_INPUT_AIDL_HAPTICS := false
 TW_DEVICE_VERSION := rc1
-TW_EXTRA_LANGUAGES := true
+TW_EXTRA_LANGUAGES := false
 TW_INCLUDE_NTFS_3G := true
 TW_INCLUDE_RESETPROP := true
 TW_INCLUDE_REPACKTOOLS := true
 TW_INCLUDE_FASTBOOTD := true
 TW_NO_LEGACY_PROPS := true
-TW_NO_SCREEN_BLANK := true
 TW_SCREEN_BLANK_ON_BOOT := false
 TW_Y_OFFSET := 89
 TW_H_OFFSET := -89
@@ -231,3 +216,7 @@ TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster41.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
 
+
+# SePolicy
+BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/public
+BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private

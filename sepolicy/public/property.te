@@ -6,3 +6,7 @@ system_public_prop(system_camera_prop)
 
 # Fingerprint
 system_public_prop(system_fingerprint_prop)
+
+# Teei/Microtrust TEE
+system_public_prop(vendor_soter_teei_prop)
+system_public_prop(vendor_teei_prop)

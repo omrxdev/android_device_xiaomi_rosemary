@@ -1,5 +1,6 @@
 # Set fw prop
-set_prop(hal_wifi_default, vendor_mtk_wifi_hal_prop)
+allow hal_wifi_default vendor_mtk_wifi_hal_prop:property_service set;
+allow hal_wifi_default vendor_mtk_wifi_hal_prop:file { read open getattr };
 
 # Get hotspot prop
-get_prop(hal_wifi_default, vendor_mtk_wifi_hotspot_prop)
+allow hal_wifi_default vendor_mtk_wifi_hotspot_prop:file { read open getattr };

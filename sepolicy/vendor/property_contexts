@@ -20,3 +20,7 @@ vendor.dynamic_sensor.                                  u:object_r:vendor_dynami
 
 # Thermal
 vendor.sys.thermal.     				u:object_r:vendor_thermal_engine_prop:s0
+
+# teei
+vendor.soter.teei.     u:object_r:vendor_soter_teei_prop:s0
+vendor.teei.           u:object_r:vendor_soter_teei_prop:s0

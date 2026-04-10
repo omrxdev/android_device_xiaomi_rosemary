@@ -9,35 +9,18 @@ export TW_FORCE_KEYMASTER_VER=true
 export FOX_VANILLA_BUILD=1
 export OF_NO_TREBLE_COMPATIBILITY_CHECK=1
 export OF_IGNORE_LOGICAL_MOUNT_ERRORS=1
-export OF_FBE_METADATA_MOUNT_IGNORE=1
 export OF_SKIP_DECRYPTED_ADOPTED_STORAGE=1
 export OF_FORCE_PREBUILT_KERNEL=1
-
-# A/B
 export FOX_AB_DEVICE=1
-
-# Virtual A/B (rosemary is VAB) - this auto-enables FOX_AB_DEVICE and FOX_VANILLA_BUILD
 export FOX_VIRTUAL_AB_DEVICE=1
-
-# Screen (rosemary is 20:9 = 2400/1080)
 export OF_SCREEN_H=2400
 export OF_STATUS_H=89
 export OF_STATUS_INDENT_LEFT=48
 export OF_STATUS_INDENT_RIGHT=48
 export OF_CLOCK_POS=1
-
-# MTK decryption
 export OF_FORCE_USE_RECOVERY_FSTAB=1
-export OF_DEFAULT_KEYMASTER_VERSION=4.1
-
-# Misc
 export OF_SKIP_MULTIUSER_FOLDERS_BACKUP=1
 export FOX_DELETE_AROMAFM=1
-
-# Prebuilt kernel - prevents 'NO KERNEL CONFIG' error
-export OF_FORCE_PREBUILT_KERNEL=1
-
-# Xiaomi-specific
 export FOX_TARGET_DEVICES="rosemary,secret,maltose,rosemary_p"
 export OF_NO_REFLASH_CURRENT_ORANGEFOX=1
 
@@ -50,8 +33,6 @@ export OF_CLOCK_POS=1
 
 export OF_DEFAULT_KEYMASTER_VERSION=4.1
 export OF_HIDE_NOTCH=1
-
-# Ccache
 export USE_CCACHE=1
 export CCACHE_EXEC=/usr/bin/ccache
 export CCACHE_DIR=/tmp/ccache

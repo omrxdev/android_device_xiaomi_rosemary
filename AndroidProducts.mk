@@ -6,7 +6,10 @@
 
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/twrp_rosemary.mk
+<<<<<<< HEAD
 
 COMMON_LUNCH_CHOICES := \
     twrp_rosemary-eng \
     twrp_rosemary-userdebug
+=======
+>>>>>>> 0262994 (Modify AndroidProducts)
