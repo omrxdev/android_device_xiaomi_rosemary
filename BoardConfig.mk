@@ -23,14 +23,14 @@ DEVICE_PATH := device/xiaomi/rosemary
 PREBUILT_PATH := $(DEVICE_PATH)/prebuilt
 
 PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/prebuilt/lib64/libkeymaster4.so:recovery/root/system/lib64/libkeymaster4.so \
-    $(DEVICE_PATH)/prebuilt/lib64/libkeymaster41.so:recovery/root/system/lib64/libkeymaster41.so \
-    $(DEVICE_PATH)/prebuilt/lib64/libkeymaster_portable.so:recovery/root/system/lib64/libkeymaster_portable.so \
-    $(DEVICE_PATH)/prebuilt/lib64/libpuresoftkeymasterdevice.so:recovery/root/system/lib64/libpuresoftkeymasterdevice.so \
-    $(DEVICE_PATH)/prebuilt/lib64/libkeymaster4support.so:recovery/root/system/lib64/libkeymaster4support.so \
-    $(DEVICE_PATH)/prebuilt/lib64/libkeymaster4_1support.so:recovery/root/system/lib64/libkeymaster4_1support.so \
-    $(DEVICE_PATH)/prebuilt/lib64/libkeymaster_messages.so:recovery/root/system/lib64/libkeymaster_messages.so \
-    $(DEVICE_PATH)/prebuilt/lib64/libgatekeeper.so:recovery/root/system/lib64/libgatekeeper.so
+    $(DEVICE_PATH)/recovery/root/vendor/lib64/libkeymaster4.so:recovery/root/system/lib64/libkeymaster4.so \
+    $(DEVICE_PATH)/recovery/root/vendor/lib64/libkeymaster41.so:recovery/root/system/lib64/libkeymaster41.so \
+    $(DEVICE_PATH)/recovery/root/vendor/lib64/libkeymaster_portable.so:recovery/root/system/lib64/libkeymaster_portable.so \
+    $(DEVICE_PATH)/recovery/root/vendor/lib64/libpuresoftkeymasterdevice.so:recovery/root/system/lib64/libpuresoftkeymasterdevice.so \
+    $(DEVICE_PATH)/recovery/root/vendor/lib64/libkeymaster4support.so:recovery/root/system/lib64/libkeymaster4support.so \
+    $(DEVICE_PATH)/recovery/root/vendor/lib64/libkeymaster4_1support.so:recovery/root/system/lib64/libkeymaster4_1support.so \
+    $(DEVICE_PATH)/recovery/root/vendor/lib64/libkeymaster_messages.so:recovery/root/system/lib64/libkeymaster_messages.so \
+    $(DEVICE_PATH)/recovery/root/vendor/lib64/libgatekeeper.so:recovery/root/system/lib64/libgatekeeper.so
 
 # Architecture
 TARGET_ARCH := arm64

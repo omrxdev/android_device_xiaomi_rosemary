@@ -1,5 +1,15 @@
 import /init.microtrust.rc
 
+service hwservicemanager /system/bin/hwservicemanager
+    user root
+    group root
+    disabled
+    onrestart setprop hwservicemanager.ready false
+    seclabel u:r:recovery:s0
+
+on early-init
+    start hwservicemanager
+
 on init
     export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw:/system/lib64/hw
 
@@ -46,13 +56,12 @@ service gatekeeper-1-0 /system/bin/android.hardware.gatekeeper@1.0-service
     disabled
     seclabel u:r:recovery:s0
 
-service keymaster-4-1 /system/bin/android.hardware.keymaster@4.1-service.beanpod
+service vendor.keymaster-4-1-beanpod /vendor/bin/hw/android.hardware.keymaster@4.1-service.beanpod
     interface android.hardware.keymaster@4.0::IKeymasterDevice default
     interface android.hardware.keymaster@4.1::IKeymasterDevice default
-    user root
-    group root drmrpc
-    disabled
-    oneshot
+    class early_hal
+    user system
+    group system drmrpc
     seclabel u:r:recovery:s0
 
 service vibrator-rosemary /system/bin/hw/android.hardware.vibrator-service.rosemary
@@ -63,22 +72,21 @@ service vibrator-rosemary /system/bin/hw/android.hardware.vibrator-service.rosem
 
 on property:vendor.sys.listener.registered=true
     start gatekeeper-1-0
-    start keymaster-4-1
+    start vendor.keymaster-4-1-beanpod
     start gatekeeper-1-0
 
 on property:ro.crypto.state=unsupported
     stop teei_daemon
-    stop keymaster-4-1
+    stop vendor.keymaster-4-1-beanpod
     stop gatekeeper-1-0
 
 on property:ro.crypto.state=unencrypted
     stop teei_daemon
-    stop keymaster-4-1
+    stop vendor.keymaster-4-1-beanpod
     stop gatekeeper-1-0
 
 on property:twrp.all.users.decrypted=true
     stop teei_daemon
-    stop keymaster-4-0
     stop gatekeeper-1-0
 
 on boot
