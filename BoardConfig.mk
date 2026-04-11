@@ -16,6 +16,12 @@ OF_FBE_METADATA_MOUNT_IGNORE := 1
 OF_SKIP_DECRYPTED_ADOPTED_STORAGE := 1
 OF_FORCE_PREBUILT_KERNEL := 1
 
+# Allow putting ELF in PRODUCT_COPY_FILES (required by vibrator)
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+
+DEVICE_PATH := device/xiaomi/rosemary
+PREBUILT_PATH := $(DEVICE_PATH)/prebuilt
+
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/prebuilt/lib64/libkeymaster4.so:recovery/root/system/lib64/libkeymaster4.so \
     $(DEVICE_PATH)/prebuilt/lib64/libkeymaster41.so:recovery/root/system/lib64/libkeymaster41.so \
@@ -25,12 +31,6 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/prebuilt/lib64/libkeymaster4_1support.so:recovery/root/system/lib64/libkeymaster4_1support.so \
     $(DEVICE_PATH)/prebuilt/lib64/libkeymaster_messages.so:recovery/root/system/lib64/libkeymaster_messages.so \
     $(DEVICE_PATH)/prebuilt/lib64/libgatekeeper.so:recovery/root/system/lib64/libgatekeeper.so
-
-# Allow putting ELF in PRODUCT_COPY_FILES (required by vibrator)
-BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
-
-DEVICE_PATH := device/xiaomi/rosemary
-PREBUILT_PATH := $(DEVICE_PATH)/prebuilt
 
 # Architecture
 TARGET_ARCH := arm64
